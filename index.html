@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<!--
+  janmusiedlak.de — Landingpage
+  v2-Draft · Brand: Zinc-Teal / Geist (anschlussfähig an cv.janmusiedlak.de)
+  Stand: 2026-05-25
+-->
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jan Musiedlak — Entscheidungslogik für den regulierten Mittelstand</title>
+  <meta name="description"
+    content="Ich strukturiere die Entscheidungslogik für strategische Vorhaben-Portfolios. Für Inhaber und Geschäftsführungen im regulierten Mittelstand, die wissen, dass eine Weichenstellung ansteht — aber nicht, welche.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['Geist Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @font-face { font-family:'Geist'; font-weight:400; font-display:swap; src:url('assets/fonts/Geist-Regular.woff2') format('woff2'); }
+    @font-face { font-family:'Geist'; font-weight:500; font-display:swap; src:url('assets/fonts/Geist-Medium.woff2') format('woff2'); }
+    @font-face { font-family:'Geist'; font-weight:600; font-display:swap; src:url('assets/fonts/Geist-SemiBold.woff2') format('woff2'); }
+    @font-face { font-family:'Geist'; font-weight:700; font-display:swap; src:url('assets/fonts/Geist-Bold.woff2') format('woff2'); }
+    @font-face { font-family:'Geist Mono'; font-weight:400; font-display:swap; src:url('assets/fonts/GeistMono-Regular.woff2') format('woff2'); }
+    @font-face { font-family:'Geist Mono'; font-weight:500; font-display:swap; src:url('assets/fonts/GeistMono-Medium.woff2') format('woff2'); }
+
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+
+    .eyebrow {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #0f766e;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 1.6rem;
+      height: 1px;
+      background: #0d9488;
+      vertical-align: 0.22em;
+      margin-right: 0.7rem;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e4e4e7;
+      border-radius: 10px;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .card:hover {
+      border-color: #99f6e4;
+      box-shadow: 0 6px 28px -12px rgba(13,148,136,.25);
+      transform: translateY(-2px);
+    }
+
+    table.fmt { width:100%; border-collapse:collapse; }
+    table.fmt th, table.fmt td { padding:1rem 1.1rem; text-align:left; vertical-align:top; border-bottom:1px solid #e4e4e7; }
+    table.fmt th {
+      font-family:'Geist Mono',monospace; font-size:.64rem; font-weight:500;
+      letter-spacing:.1em; text-transform:uppercase; color:#71717a; background:#fafafa;
+    }
+    table.fmt td { font-size:.9rem; color:#52525b; }
+    table.fmt tr:last-child td { border-bottom:none; }
+    table.fmt .f-name { font-weight:600; color:#18181b; font-size:.95rem; }
+    table.fmt .f-price { font-family:'Geist Mono',monospace; color:#0f766e; white-space:nowrap; font-size:.86rem; }
+    @media (max-width:680px) {
+      table.fmt thead { display:none; }
+      table.fmt tr { display:block; padding:1rem 0; border-bottom:1px solid #e4e4e7; }
+      table.fmt tr:last-child { border-bottom:none; }
+      table.fmt td { display:block; border:none; padding:.15rem 0; }
+      table.fmt td.f-name { font-size:1.02rem; margin-bottom:.25rem; }
+      table.fmt td.f-price { margin-top:.35rem; }
+    }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    .reveal { opacity:0; }
+    .reveal.in { animation: fadeUp .7s cubic-bezier(.2,.6,.2,1) forwards; }
+
+    .s-reveal { opacity:0; transform:translateY(20px); transition:opacity .6s ease, transform .6s ease; }
+    .s-reveal.in { opacity:1; transform:translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .s-reveal { opacity:1 !important; transform:none !important; animation:none !important; }
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+
+<body class="font-sans bg-[#fafafa] text-zinc-700 text-[0.95rem] leading-relaxed">
+
+  <!-- ===================== NAV ===================== -->
+  <header class="sticky top-0 z-40 bg-[#fafafa]/85 backdrop-blur border-b border-zinc-200">
+    <div class="max-w-[1100px] mx-auto px-6 sm:px-10 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-baseline gap-2.5">
+        <span class="font-semibold text-zinc-900 tracking-tight">Jan Musiedlak</span>
+        <span class="font-mono text-[0.6rem] tracking-[0.16em] uppercase text-zinc-400 hidden sm:inline">Entscheidungslogik für den regulierten Mittelstand</span>
+      </a>
+      <nav class="flex items-center gap-7 text-[0.82rem]">
+        <a href="#luecke" class="hidden md:inline text-zinc-500 hover:text-zinc-900 transition-colors">Die Lücke</a>
+        <a href="#modell" class="hidden md:inline text-zinc-500 hover:text-zinc-900 transition-colors">Das Modell</a>
+        <a href="#formate" class="hidden md:inline text-zinc-500 hover:text-zinc-900 transition-colors">Formate</a>
+        <a href="#kontakt"
+          class="px-3.5 py-1.5 rounded-md bg-teal-700 text-white font-medium hover:bg-teal-800 transition-colors">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="bg-white border-b border-zinc-200">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-28">
+        <div class="grid lg:grid-cols-[1.55fr_1fr] gap-12 lg:gap-16 items-center">
+          <div>
+            <p class="eyebrow reveal" style="animation-delay:.05s">Inhaber und Geschäftsführungen · Regulierter Mittelstand</p>
+            <h1 class="reveal mt-6 text-zinc-900 font-semibold tracking-[-0.02em] text-[2rem] sm:text-[2.7rem] leading-[1.12]"
+              style="animation-delay:.15s">
+              Wenn die Geschäftsführung weiß, dass eine Weichenstellung ansteht — aber nicht, welche.
+            </h1>
+            <p class="reveal mt-7 text-[1.02rem] text-zinc-600 max-w-[33rem]" style="animation-delay:.28s">
+              Ich strukturiere, worauf gesetzt wird, was gestoppt wird und was volle Energie bekommt.
+              Sechs Wochen, sechs Sessions.
+            </p>
+            <p class="reveal mt-6 text-[1.05rem] font-medium text-teal-800 max-w-[33rem]" style="animation-delay:.4s">
+              Ich entscheide nicht. Ich schaffe Bedingungen, unter denen Entscheidungen fallen.
+            </p>
+            <div class="reveal mt-9 flex flex-wrap items-center gap-x-5 gap-y-3" style="animation-delay:.52s">
+              <a href="#kontakt"
+                class="px-5 py-2.5 rounded-md bg-teal-700 text-white font-medium hover:bg-teal-800 transition-colors">
+                Kontakt
+              </a>
+            </div>
+          </div>
+          <div class="reveal" style="animation-delay:.36s">
+            <div class="relative">
+              <div class="absolute -inset-3 border border-zinc-200 rounded-xl"></div>
+              <img src="assets/Jan_Musiedlak_Foto.jpeg" alt="Jan Musiedlak"
+                class="relative w-full max-w-[300px] mx-auto rounded-lg object-cover aspect-[4/5] border border-zinc-300">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 01 DIE LÜCKE ===================== -->
+    <section id="luecke" class="bg-[#fafafa]">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-24 s-reveal">
+        <p class="eyebrow">01 — Die Lücke</p>
+        <h2 class="mt-5 text-zinc-900 font-semibold tracking-[-0.015em] text-[1.6rem] sm:text-[2rem] leading-[1.18] max-w-[40rem]">
+          Viel Aktivität. Wenig Klarheit.
+        </h2>
+        <div class="mt-7 space-y-5 max-w-[52rem]">
+          <p>
+            In der Baustoff- und Dachbranche treffen gerade mehrere Anforderungen gleichzeitig ein: BIM-Pflicht
+            für Bundesbauprojekte ab 2027, der Digitale Produktpass für Bauprodukte mittelfristig, Solardachpflicht,
+            verschärfte GEG-Anforderungen bei Sanierungen. Dazu Plattformen, die Vertriebswege verändern, und
+            KI-Tools, die 50 bis 80 Prozent Effizienzsprünge versprechen — in einer Branche, die beim
+            Digitalisierungsindex unter allen deutschen Wirtschaftszweigen am schlechtesten abschneidet.
+          </p>
+          <p>
+            Was ich in solchen Situationen beobachte: Die Fragen landen beim IT-Leiter oder beim
+            Produktverantwortlichen, weil auf GF-Ebene noch nicht klar ist, was das Unternehmen eigentlich
+            will. Initiativen laufen parallel, keine mit voller Konsequenz. Budgets werden verteilt statt
+            gesetzt. Die eigentliche Frage wird vertagt: Worauf setzen wir wirklich?
+          </p>
+          <p>
+            Was mich dabei beschäftigt: Das ist in den Fällen, die ich aus der Nähe gesehen habe, selten
+            ein Ressourcenproblem. Es ist eine fehlende Entscheidungslogik.
+          </p>
+        </div>
+
+        <div class="mt-5 border-l-2 border-zinc-200 pl-5 max-w-[52rem]">
+          <p class="text-[0.88rem] text-zinc-500">
+            Das Muster kenne ich aus einem anderen Kontext: Vier Jahre habe ich an einer integrierten
+            Kundensicht für den Telefonsupport einer Lebensversicherung gearbeitet, Geschäftsprozessautomatisierung
+            inklusive. Konkrete Ziele, an denen sich das Vorhaben hätte orientieren können, fehlten.
+            Prozesskosten, Durchlaufzeiten. Das kann ich heute benennen.
+          </p>
+        </div>
+
+        <div class="mt-12 grid sm:grid-cols-2 gap-5 max-w-[52rem]">
+          <div class="card p-6">
+            <p class="font-mono text-[0.66rem] tracking-[0.12em] uppercase text-zinc-400">Was es schon gibt</p>
+            <p class="mt-3 text-zinc-700 text-[0.9rem]">
+              <span class="font-medium text-zinc-900">IT-Beratung</span> implementiert Lösungen — klärt aber nicht,
+              ob es die richtige Investition ist. <span class="font-medium text-zinc-900">Branchenberater</span>
+              kennen den Markt — strukturieren aber nicht die Entscheidungslogik der Geschäftsführung.
+            </p>
+          </div>
+          <div class="card p-6" style="border-color:#99f6e4; background:#f0fdfa;">
+            <p class="font-mono text-[0.66rem] tracking-[0.12em] uppercase text-teal-700">Was dazwischen fehlt</p>
+            <p class="mt-3 text-zinc-700 text-[0.9rem]">
+              Die strategischen Entscheidungen selbst. Der Moment, in dem klar wird, worauf gesetzt wird
+              und was dafür aufgegeben werden muss.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 02 DAS MODELL ===================== -->
+    <section id="modell" class="bg-white border-y border-zinc-200">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-24 s-reveal">
+        <p class="eyebrow">02 — Das Modell</p>
+        <h2 class="mt-5 text-zinc-900 font-semibold tracking-[-0.015em] text-[1.6rem] sm:text-[2rem] leading-[1.18]">
+          Zwei Wege in die Zusammenarbeit.
+        </h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+          <div class="card p-7">
+            <p class="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-zinc-400">Der Einstieg</p>
+            <h3 class="mt-3 text-[1.15rem] font-semibold text-zinc-900">Ein konkretes Problem lösen</h3>
+            <p class="mt-3 text-[0.9rem]">
+              Viele Gespräche beginnen mit einer handfesten Frage: Wie bereiten wir BIM-Daten auf? Wie
+              integrieren wir digitale Materialermittlung in unser Vertriebssystem? Ich bringe für solche
+              Fragen echte Domänenkompetenz mit — ich entwickle selbst ein KI-Tool für den Dachbaumarkt
+              und kenne die Wertschöpfungskette von innen.
+            </p>
+            <p class="mt-3 text-[0.9rem]">
+              Das Problem wird gelöst. Und was dabei fast immer sichtbar wird: Das konkrete Problem ist
+              Symptom einer tieferen Unklarheit im Portfolio.
+            </p>
+          </div>
+          <div class="card p-7">
+            <p class="font-mono text-[0.68rem] tracking-[0.12em] uppercase text-zinc-400">Das Kernmandat</p>
+            <h3 class="mt-3 text-[1.15rem] font-semibold text-zinc-900">Die Entscheidungslogik strukturieren</h3>
+            <p class="mt-3 text-[0.9rem]">
+              Wenn nicht eine Initiative unklar ist, sondern die Priorisierung zwischen fünf — dann ist das
+              das eigentliche Mandat. In einem strukturierten Prozess über sechs Wochen klären wir gemeinsam,
+              was wirklich entschieden werden muss. Das Führungsteam bringt die Domänenexpertise. Ich bringe
+              die Bereitschaft, das Nicht-Entscheiden schmerzhaft sichtbar zu machen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 03 DAS KERNMANDAT ===================== -->
+    <section class="bg-[#fafafa]">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-24 s-reveal">
+        <p class="eyebrow">03 — Das Kernmandat</p>
+        <h2 class="mt-5 text-zinc-900 font-semibold tracking-[-0.015em] text-[1.6rem] sm:text-[2rem] leading-[1.18]">
+          Sechs Wochen. Sechs Sessions. Ein lebendes Dokument.
+        </h2>
+
+        <div class="mt-10 grid sm:grid-cols-3 gap-5">
+          <div class="card p-6">
+            <p class="font-mono text-[0.66rem] tracking-[0.12em] uppercase text-teal-700">Woche 1—2</p>
+            <h3 class="mt-2.5 text-[1.05rem] font-semibold text-zinc-900">Klären</h3>
+            <p class="mt-2 text-[0.87rem]">
+              Einzelgespräche mit dem CEO, gezielte Interviews mit Schlüsselpersonen. Die Lage kennt
+              das Unternehmen besser als ich. Was in diesen Gesprächen entsteht: ein Bild davon, was
+              tatsächlich entschieden werden muss und wo die echten Konflikte im Portfolio liegen.
+            </p>
+          </div>
+          <div class="card p-6">
+            <p class="font-mono text-[0.66rem] tracking-[0.12em] uppercase text-teal-700">Woche 3—4</p>
+            <h3 class="mt-2.5 text-[1.05rem] font-semibold text-zinc-900">Strukturieren</h3>
+            <p class="mt-2 text-[0.87rem]">
+              Alle relevanten Initiativen werden sichtbar gemacht, verglichen, an der Strategie gemessen.
+              Ich moderiere sachlich durch diesen Prozess. Interne Kämpfe um Initiativen treten dabei
+              in den Hintergrund.
+            </p>
+          </div>
+          <div class="card p-6">
+            <p class="font-mono text-[0.66rem] tracking-[0.12em] uppercase text-teal-700">Woche 5—6</p>
+            <h3 class="mt-2.5 text-[1.05rem] font-semibold text-zinc-900">Entscheiden</h3>
+            <p class="mt-2 text-[0.87rem]">
+              Das Portfolio wird gesetzt: klare Wetten, definierte Ressourcen, explizite Stopps. Der
+              Anspruch des Formats: Entscheidungen fallen. Nicht nur vorbereitet werden.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 border-l-2 border-teal-600 pl-6 max-w-[44rem]">
+          <p class="text-[0.92rem]">
+            Das Ergebnis ist kein Abschlussbericht. Es ist ein <span class="font-medium text-zinc-900">lebendes
+            Entscheidungsdokument</span>, das während des Mandats Schritt für Schritt wächst: alle getroffenen
+            Entscheidungen mit ihrer Begründung, die strategischen Wetten mit Laufzeiten und Ressourcenzusagen,
+            explizite Abbruchkriterien.
+          </p>
+          <p class="mt-3 text-[0.92rem]">
+            Dazu ein konfigurierter KI-Assistent, der die erarbeitete Entscheidungslogik als Kontext kennt.
+            Wenn sechs Monate später eine neue Initiative auf den Tisch kommt, kann jede Person im
+            Führungsteam fragen: Passt das zu dem, worauf wir uns festgelegt haben? Und eine Empfehlung
+            für den künftigen Entscheidungsrhythmus: wie oft, in welchem Format, wer sitzt dabei.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 04 BELEG / MATGRID ===================== -->
+    <section class="bg-white border-y border-zinc-200">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-24 s-reveal">
+        <div class="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start">
+          <div>
+            <p class="eyebrow">04 — Beleg</p>
+            <h2 class="mt-5 text-zinc-900 font-semibold tracking-[-0.015em] text-[1.6rem] sm:text-[2rem] leading-[1.18]">
+              Ich rede nicht über die Branche. Ich baue darin.
+            </h2>
+          </div>
+          <div class="lg:pt-14">
+            <p>
+              Mit <span class="font-medium text-zinc-900">matgrid</span> entwickle ich ein KI-Tool für die
+              automatisierte Materialermittlung im Dachbau — von der Dachform über den Schichtaufbau bis
+              zur exportierbaren Stückliste. Kein Nebenprojekt. Daher kenne ich die Wertschöpfungskette
+              von innen: die Datenlage bei Herstellern, die Produktlogik im Handel, die digitalen
+              Anforderungen des Handwerks.
+            </p>
+            <p class="mt-4">
+              Die Domänenexpertise bringt Ihr Team. Was ich mitbringe, ist ein Verständnis für die
+              Entscheidungslogik in diesem Markt, das über das hinausgeht, was jemand aus Studien kennt.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 05 FORMATE ===================== -->
+    <section id="formate" class="bg-[#fafafa]">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-24 s-reveal">
+        <p class="eyebrow">05 — Formate</p>
+        <h2 class="mt-5 text-zinc-900 font-semibold tracking-[-0.015em] text-[1.6rem] sm:text-[2rem] leading-[1.18]">
+          Formate &amp; Richtwerte.
+        </h2>
+        <p class="mt-4 text-[0.92rem] max-w-[40rem]">
+          Vier Wege der Zusammenarbeit — vom überschaubaren Einstieg bis zur kontinuierlichen Begleitung.
+          Welcher passt, hängt davon ab, wie weit das Vorhaben reicht und wer mitentscheidet.
+        </p>
+
+        <div class="mt-9 bg-white border border-zinc-200 rounded-xl overflow-hidden">
+          <table class="fmt">
+            <thead>
+              <tr>
+                <th style="width:24%">Format</th>
+                <th style="width:16%">Dauer</th>
+                <th>Wofür</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="f-name">Einstiegsprojekt</td>
+                <td>nach Zuschnitt</td>
+                <td>Ein konkretes Branchenproblem lösen. Was dabei sichtbar wird: das Problem ist fast immer Symptom einer tieferen Unklarheit im Portfolio.</td>
+              </tr>
+              <tr>
+                <td class="f-name">Pilot</td>
+                <td>3—4 Wochen</td>
+                <td>Eine scharf geschnittene Entscheidungsfrage strukturieren. Ein eigenes Format mit vollem Prozess — kein abgespecktes Kernmandat.</td>
+              </tr>
+              <tr>
+                <td class="f-name">Kernmandat</td>
+                <td>6 Wochen</td>
+                <td>Die Entscheidungslogik für das strategische Vorhaben-Portfolio. Auf Wunsch in zwei Etappen mit Zwischen-Gate.</td>
+              </tr>
+              <tr>
+                <td class="f-name">Beirat</td>
+                <td>ab 6 Monaten</td>
+                <td>Strategie kontinuierlich begleiten, quartalsweise statt einmalig.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3 text-[0.78rem] text-zinc-400">
+          Konditionen auf Anfrage.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== 06 WARUM JAN ===================== -->
+    <section class="bg-white border-y border-zinc-200">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-24 s-reveal">
+        <p class="eyebrow">06 — Woher ich komme</p>
+        <div class="mt-7 grid md:grid-cols-2 gap-x-14 gap-y-6 max-w-[52rem]">
+          <p>
+            Ich habe 15 Jahre als Software Engineer, IT-Consultant, Innovation Strategist und Head of
+            Product gearbeitet — aus dem Bauen, nicht aus der Beratung. Zuletzt habe ich bei einem
+            mittelständischen Bauzulieferer eine digitale Produktorganisation von vier auf 25 Personen
+            aufgebaut.
+          </p>
+          <p>
+            Ich kenne dieses Muster aus mehreren Stationen. Eine strategische Initiative läuft, das
+            Geschäftsmodell dahinter trägt nicht, die Einwände liegen auf dem Tisch, und trotzdem
+            ändert sich die Richtung nicht. Aus dieser Erfahrung heraus ist dieses Angebot entstanden:
+            Richtungsentscheidungen klären und verbindlich festlegen, solange noch eine echte Wahl besteht.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== KONTAKT ===================== -->
+    <section id="kontakt" class="bg-[#fafafa]">
+      <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-20 sm:py-28 s-reveal">
+        <div class="bg-zinc-900 rounded-2xl px-8 sm:px-14 py-14 sm:py-16">
+          <p class="eyebrow" style="color:#5eead4;">Kontakt</p>
+          <h2 class="mt-5 text-white font-semibold tracking-[-0.015em] text-[1.7rem] sm:text-[2.1rem] leading-[1.16] max-w-[34rem]">
+            Kontakt.
+          </h2>
+          <p class="mt-5 text-zinc-300 max-w-[34rem] text-[0.98rem]">
+            Wenn Sie mehr erfahren möchten oder eine konkrete Frage haben: ich bin per E-Mail erreichbar.
+          </p>
+          <div class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <a href="mailto:jan@musiedlak.de"
+              class="px-5 py-2.5 rounded-md bg-white text-zinc-900 font-medium hover:bg-zinc-100 transition-colors">
+              jan@musiedlak.de
+            </a>
+            <span class="font-mono text-[0.72rem] tracking-wide text-zinc-500">Regulierter Mittelstand · Schwerpunkt Bau</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-[#fafafa] border-t border-zinc-200">
+    <div class="max-w-[1100px] mx-auto px-6 sm:px-10 py-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="font-mono text-[0.72rem] tracking-wide text-zinc-400">© 2026 Jan Musiedlak</p>
+      <nav class="flex items-center gap-6 text-[0.8rem]">
+        <a href="https://cv.janmusiedlak.de" class="text-zinc-500 hover:text-zinc-900 transition-colors">CV</a>
+        <a href="impressum.html" class="text-zinc-500 hover:text-zinc-900 transition-colors">Impressum</a>
+        <a href="datenschutz.html" class="text-zinc-500 hover:text-zinc-900 transition-colors">Datenschutz</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.s-reveal').forEach(function (el) { io.observe(el); });
+  </script>
+
+</body>
+
+</html>
